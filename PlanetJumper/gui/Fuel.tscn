@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://gui/Fuel.gd" type="Script" id=1]
+[ext_resource path="res://assets/gui/fuel_back.png" type="Texture" id=2]
+[ext_resource path="res://assets/gui/fuel_arrow.png" type="Texture" id=3]
+[ext_resource path="res://assets/gui/fuel_full.png" type="Texture" id=4]
+[ext_resource path="res://assets/gui/fuel_empty.png" type="Texture" id=5]
+[ext_resource path="res://assets/gui/fuel_off.png" type="Texture" id=6]
+
+[node name="FuelMeter" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="back" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="meter" type="Sprite" parent="."]
+position = Vector2( 0.065834, -0.0503635 )
+rotation = -1.5708
+texture = ExtResource( 3 )
+offset = Vector2( -0.054512, -11.0463 )
+
+[node name="full" type="Sprite" parent="."]
+position = Vector2( -239.736, 43.994 )
+texture = ExtResource( 4 )
+offset = Vector2( 240, -10 )
+
+[node name="empty" type="Sprite" parent="."]
+position = Vector2( -239.736, 43.994 )
+texture = ExtResource( 5 )
+offset = Vector2( 240, -10 )
+
+[node name="off" type="Sprite" parent="."]
+position = Vector2( -239.736, 43.994 )
+texture = ExtResource( 6 )
+offset = Vector2( 240, -10 )
+
+[node name="blinkTimer" type="Timer" parent="."]
+wait_time = 0.5
+[connection signal="timeout" from="blinkTimer" to="." method="_on_blinkTimer_timeout"]
