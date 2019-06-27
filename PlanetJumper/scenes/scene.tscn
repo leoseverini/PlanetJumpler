@@ -11,14 +11,21 @@
 script = ExtResource( 1 )
 
 [node name="GuiLayer" type="Node2D" parent="."]
+position = Vector2( 605.088, -3.05176e-005 )
 z_index = 500
 script = ExtResource( 2 )
 
 [node name="GUI" parent="GuiLayer" instance=ExtResource( 3 )]
 modulate = Color( 1, 1, 1, 0.694118 )
+anchor_left = 1.0
+anchor_bottom = 0.0
+margin_left = 124.366
+margin_top = 38.2664
+margin_right = 124.366
+margin_bottom = 38.2664
 
 [node name="Ship" parent="." instance=ExtResource( 4 )]
-position = Vector2( 298.83, 715.31 )
+position = Vector2( 351.831, 879.612 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 editor/display_folded = true

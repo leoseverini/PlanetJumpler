@@ -1,0 +1,49 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://items/asteroids/Asteroid.gd" type="Script" id=1]
+[ext_resource path="res://assets/asteroids/particle.png" type="Texture" id=2]
+[ext_resource path="res://assets/asteroids/asteroid01.png" type="Texture" id=3]
+[ext_resource path="res://assets/asteroids/asteroid02.png" type="Texture" id=4]
+[ext_resource path="res://assets/asteroids/asteroid03.png" type="Texture" id=5]
+[ext_resource path="res://assets/asteroids/asteroid04.png" type="Texture" id=6]
+[ext_resource path="res://assets/asteroids/asteroid05.png" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 46.1564
+
+[node name="Asteroid" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 10
+lifetime = 2.0
+speed_scale = 0.5
+explosiveness = 0.43
+texture = ExtResource( 2 )
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 54.77
+angle = -31.0
+angle_random = 0.3
+scale_amount = 0.1
+scale_amount_random = 0.2
+color = Color( 0.647059, 0.627451, 0.627451, 1 )
+
+[node name="Asteroid" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 5
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Asteroid"]
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Asteroid"]
+shape = SubResource( 2 )
+[connection signal="area_entered" from="Asteroid" to="." method="_on_Area2D_area_entered"]

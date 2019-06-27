@@ -9,6 +9,7 @@ var steps = 0.05
 var crashed = false
 var fuelAmount = 100
 var deltaSum = 0
+var fuelConsume = 0.02
 
 func _ready():
 	pass # Replace with function body.
@@ -28,7 +29,7 @@ func _process(delta):
 		
 		get_node(".").scale = Vector2(scl, scl)
 		
-		fuelAmount = max(0, fuelAmount - (vel * 0.1))
+		fuelAmount = max(0, fuelAmount - (vel * fuelConsume))
 		
 		emit_signal("velocity", vel)
 		emit_signal("fuel", fuelAmount)

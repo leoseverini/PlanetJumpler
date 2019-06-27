@@ -1,8 +1,8 @@
 extends Node2D
 
-var planet_resource = preload("res://planets/planet.tscn")
-var asteroid_resource = preload("res://asteroids/Asteroid.tscn")
-var ufo_resource = preload("res://ufos/Ufo.tscn")
+var planet_resource = preload("res://items/planets/planet.tscn")
+var asteroid_resource = preload("res://items/asteroids/Asteroid.tscn")
+var ufo_resource = preload("res://items/ufos/Ufo.tscn")
 
 var distance = 0
 var shipX = 0
@@ -20,17 +20,18 @@ var deltaSum = 0
 
 func _ready():
 	nextPlanetDistance = rand_range(500, 1500)
+	nextAsteroidDistance = rand_range(500, 1500)
+	nextUfoDistance = rand_range(500, 1500)
 	addPlanet()
 	addAsteroid()
 	addUfo()
 
 func _process(delta):
 	deltaSum = deltaSum + delta
-	if deltaSum >= 0.0167:
+	if deltaSum >= 0.02:
 		deltaSum = 0
 		sceneMove()
 	
-		
 func _on_Ship_move(x):
 	shipX = x
 	
@@ -61,21 +62,21 @@ func _input(event):
 	pass
 		
 func addPlanet():
-	print("ADD PLANET")
+	# print("ADD PLANET")
 	var planet = planet_resource.instance()	
 	planet.z_index = 1
 	planet.connect("planetEnter", self, "_on_Planet_Enter")
 	add_child(planet)
 	
 func addAsteroid():
-	print("ADD ASTEROID")
+	# print("ADD ASTEROID")
 	var asteroid = asteroid_resource.instance()	
 	asteroid.z_index = 2
 	asteroid.connect("shipCrashed", self, "_on_Ship_Chrashed")
 	add_child(asteroid)
 
 func addUfo():
-	print("ADD UFO")
+	# print("ADD UFO")
 	var ufo = ufo_resource.instance()	
 	ufo.z_index = 3
 	# ufo.connect("planetEnter", self, "_on_Planet_Enter")
@@ -96,11 +97,13 @@ func sceneMove():
 
 func _on_Ship_Chrashed():
 	isGameOver = true
-	$Ship.crash()
+	# $Ship.crash()
 
 func _on_Ship_fuel(f):
 	$GuiLayer/GUI/FuelMeter.fuel_set(f)
 	
-func _on_Planet_Enter():
+func _on_Planet_Enter(planet):
 	if shipV == 0:
-		$Ship.addFuel(0.1)
+		var collectVelocity = 0.05
+		planet.collectResources(collectVelocity)
+		$Ship.addFuel(collectVelocity)
