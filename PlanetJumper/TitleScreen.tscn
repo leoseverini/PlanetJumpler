@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/gui/logo_title.png" type="Texture" id=1]
+[ext_resource path="res://gui/NewGameButton.tscn" type="PackedScene" id=2]
+[ext_resource path="res://gui/MarketButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://gui/AchievementButton.tscn" type="PackedScene" id=4]
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 0.902496
+margin_right = 0.902466
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+
+[node name="Menu" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 670.0
+margin_bottom = 974.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Menu"]
+margin_right = 620.0
+margin_bottom = 117.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="Logo" type="TextureRect" parent="MarginContainer/Menu/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 610.0
+margin_bottom = 107.0
+texture = ExtResource( 1 )
+stretch_mode = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Menu"]
+margin_top = 121.0
+margin_right = 620.0
+margin_bottom = 279.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Menu/VBoxContainer"]
+editor/display_folded = true
+margin_right = 620.0
+margin_bottom = 50.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 20
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="NewGameButton" parent="MarginContainer/Menu/VBoxContainer/MarginContainer" instance=ExtResource( 2 )]
+margin_left = 10.0
+margin_top = 20.0
+margin_right = 610.0
+margin_bottom = 40.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/Menu/VBoxContainer"]
+margin_top = 54.0
+margin_right = 620.0
+margin_bottom = 104.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 20
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="MarketButton" parent="MarginContainer/Menu/VBoxContainer/MarginContainer2" instance=ExtResource( 3 )]
+margin_left = 10.0
+margin_top = 20.0
+margin_right = 610.0
+margin_bottom = 40.0
+
+[node name="MarginContainer3" type="MarginContainer" parent="MarginContainer/Menu/VBoxContainer"]
+margin_top = 108.0
+margin_right = 620.0
+margin_bottom = 158.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 20
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="AchievementButton" parent="MarginContainer/Menu/VBoxContainer/MarginContainer3" instance=ExtResource( 4 )]
+margin_left = 10.0
+margin_top = 20.0
+margin_right = 610.0
+margin_bottom = 40.0
